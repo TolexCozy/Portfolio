@@ -30,7 +30,11 @@ from decouple import config
 
 
 DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'portfolio-zir6.onrender.com',   # old URL if you still use it
+    'my-portfolio-g5tw.onrender.com',
+    'my-portfolio-zrtt.onrender.com',  # add the new one here
+]
 
 
 # Application definition
