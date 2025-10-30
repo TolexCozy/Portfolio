@@ -1,0 +1,210 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block title %}Verify Email{% endblock title %}
+
+{% block style %}
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    {% comment %} background: url("{% static 'cozy-sees/bg.jpg' %}") no-repeat center center/cover; {% endcomment %}
+    background: linear-gradient(135deg, #1a73e8, #4285f4);
+    font-family: 'Roboto', sans-serif;
+    color: #202124;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .google-text-logo {
+      font-family: 'Product Sans', 'Poppins', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      margin-bottom: 15px;
+    }
+    
+    .g-blue { color: #4285F4; }
+    .g-red { color: #EA4335; }
+    .g-yellow { color: #FBBC05; }
+    .g-green { color: #34A853; }
+      
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+  }
+
+  .verify-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    padding: 40px 30px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 0.8s ease forwards;
+    z-index: 10000;
+  }
+
+  .google-logo {
+    width: 70px;
+    margin-bottom: 15px;
+  }
+
+  .btn-google {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 0;
+    font-weight: 500;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+  }
+
+  .btn-google:hover {
+    background-color: #1765c1;
+  }
+
+  header,
+  footer,
+  #scroll-top,
+  #preloader {
+    display: none !important;
+  }
+
+  main.main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* PIN boxes */
+  .pin-input {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 20px 0;
+  }
+
+  .pin-box {
+    width: 45px;
+    height: 50px;
+    font-size: 22px;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .pin-box:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
+  }
+
+  .spinner {
+    margin-top: 15px;
+    border: 4px solid #ddd;
+    border-top: 4px solid #1a73e8;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 1s linear infinite;
+  }
+
+  .fade-message {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #5f6368;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
+{% endblock style %}
+
+
+{% block body %}
+<div class="overlay" style="background-color: #007bff; color: white;">
+  <div class="verify-card">
+    {% comment %} <img src="{% static 'images/google-logo.png' %}" alt="Google" class="google-logo"> {% endcomment %}
+    <h1 class="google-text-logo">
+        <span class="g-red">T</span><span class="g-blue">o</span><span class="g-yellow">l</span><span class="g-blue">e</span><span class="g-green">x</span><span class="g-red">b</span>
+    </h1>
+        <div class="title">Verify your email</div>
+    <div class="subtitle">Enter the 6-digit code sent to <strong>{{ email }}</strong></div>
+
+    <form method="POST" id="verifyForm">
+      {% csrf_token %}
+      <input type="hidden" name="email" value="{{ email }}">
+      <input type="hidden" id="pin" name="pin">
+
+      <div class="pin-input">
+        {% for i in "123456" %}
+          <input type="text" maxlength="1" class="pin-box" inputmode="numeric" pattern="[0-9]*">
+        {% endfor %}
+      </div>
+
+      <button type="submit" class="btn-google">Verify</button>
+    </form>
+
+    {% for message in messages %}
+      <p class="mt-3 text-danger">{{ message }}</p>
+    {% endfor %}
+
+    <div class="spinner"></div>
+    <div class="fade-message">Please wait while we send your verification PIN...</div>
+  </div>
+</div>
+
+<script>
+  // PIN box behavior
+  const boxes = document.querySelectorAll('.pin-box');
+  const hiddenInput = document.getElementById('pin');
+  const form = document.getElementById('verifyForm');
+
+  boxes.forEach((box, i) => {
+    box.addEventListener('input', () => {
+      if (box.value.length === 1 && i < boxes.length - 1) {
+        boxes[i + 1].focus();
+      }
+      updateHiddenInput();
+    });
+
+    box.addEventListener('keydown', (e) => {
+      if (e.key === 'Backspace' && !box.value && i > 0) {
+        boxes[i - 1].focus();
+      }
+    });
+  });
+
+  function updateHiddenInput() {
+    hiddenInput.value = Array.from(boxes).map(b => b.value).join('');
+  }
+
+  // Optional message update
+  setTimeout(() => {
+    document.querySelector('.spinner').style.display = 'none';
+    document.querySelector('.fade-message').textContent = 'PIN sent successfully. Check your inbox.';
+  }, 3000);
+</script>
+{% endblock %}

@@ -1,0 +1,178 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block title %}Cybersecurity & Full-Stack Blog{% endblock title %}
+
+
+{% block body %}
+
+
+{% block head %}
+
+<!-- Add icons and Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0d6efd;
+    color: #333;
+    line-height: 1.6;
+  }
+
+.blog-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #4115b9ff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.blog-container section {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: #cce5ff; /* Light blue */
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #007bff; /* Optional: blue accent line */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.blog-container section:last-of-type {
+  border-bottom: none;
+}
+
+
+h1, h2 {
+  color: #007bff;
+}
+h1 {
+  margin-bottom: 0.5rem;
+}
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+ul {
+  padding-left: 1.2rem;
+}
+ul li {
+  margin-bottom: 0.5rem;
+}
+.call-to-action a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+.blog-icon {
+  color: #007bff;
+  margin-right: 0.5rem;
+}
+@media (max-width: 768px) {
+  .blog-container {
+    padding: 1rem;
+  }
+}
+</style>
+{% endblock head %}
+
+
+<!-- Services Section -->
+<section id="services" class="services section" style="background-color: #007bff; color: white;">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2 style="color: white;">Welcome to my Blog</h2>
+
+  </div><!-- End Section Title -->
+
+
+<div class="blog-container">
+  
+  <!-- Blog Header -->
+  <header style="margin-bottom: 2rem;">
+      <h1><i class="bi bi-journal-text blog-icon"></i>Bridging Cybersecurity and Web Development: A Journey Through Full-Stack and SOC Operations</h1>
+      <p class="fw-bold" style="color: #0fc90fff; font-size: 0.9rem;"><i class="bi bi-calendar3"></i> Feel Free To Check Through</p>
+  </header>
+
+  <!-- Table of Contents -->
+  <nav style="margin-bottom: 2rem; padding: 1rem; background: #e9f5ff; border-radius: 5px;">
+      <h4><i class="bi bi-list-check blog-icon"></i>Table of Contents</h4>
+      <ul>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#cybersecurity">Cybersecurity in Development</a></li>
+          <li><a href="#fullstack">Full-Stack Meets Security</a></li>
+          <li><a href="#uiux">UI/UX Design</a></li>
+          <li><a href="#projects">Projects Highlight</a></li>
+          <li><a href="#conclusion">Conclusion</a></li>
+          <li><a href="#cta">Connect with Me</a></li>
+      </ul>
+  </nav>
+
+  <!-- Sections -->
+  <section id="intro">
+      <p> In today’s digital-first world, the intersection of <strong>cybersecurity, web development, and UI/UX design</strong> is more critical than ever. As a tech enthusiast and aspiring SOC analyst, I’ve explored how understanding security, building functional applications, and designing user-friendly interfaces all come together to create <strong>robust, scalable, and secure digital experiences</strong>.</p>
+  </section>
+
+  <section id="cybersecurity">
+      <h2><i class="bi bi-shield-lock blog-icon"></i>The Importance of Cybersecurity in Development</h2>
+      <p>Security is no longer an afterthought. From web applications to enterprise systems, vulnerabilities can have devastating consequences. During my journey:</p>
+      <ul>
+          <li>Identifying common <strong>web vulnerabilities</strong> like SQL injection, XSS, and CSRF.</li>
+          <li>Using tools like <strong>Burp Suite, Nmap, and Wireshark</strong> for penetration testing and network analysis.</li>
+          <li>Monitoring logs with <strong>Splunk and ELK</strong> for proactive defense.</li>
+      </ul>
+  </section>
+
+  <section id="fullstack">
+      <h2><i class="bi bi-code-slash blog-icon"></i>Full-Stack Development Meets Security</h2>
+      <p>Building applications isn’t just about making things work—it’s about <strong>making them work safely</strong>. In my projects:</p>
+      <ul>
+          <li><strong>Frontend:</strong> HTML, CSS, JavaScript, React for responsive and intuitive interfaces.</li>
+          <li><strong>Backend:</strong> Python (Django/Flask) and Node.js for robust APIs and database functionality.</li>
+          <li><strong>Security Integration:</strong> Secure authentication, input validation, and proper session management.</li>
+      </ul>
+      <p>For example, in a Django e-commerce project, I implemented secure user authentication, payment integration, and product filtering while maintaining data integrity and privacy.</p>
+  </section>
+
+  <section id="uiux">
+      <h2><i class="bi bi-palette blog-icon"></i>UI/UX Design: Crafting Meaningful Experiences</h2>
+      <ul>
+          <li>Using <strong>Figma and Adobe XD</strong> to create wireframes and prototypes that improve usability.</li>
+          <li>Conducting usability tests to iterate designs, making applications <strong>accessible and enjoyable</strong>.</li>
+      </ul>
+      <p>Combining security, functionality, and design ensures digital experiences are trusted, efficient, and user-friendly.</p>
+  </section>
+
+  <section id="projects">
+      <h2><i class="bi bi-kanban blog-icon"></i>Projects Highlight</h2>
+      <ul>
+          <li><strong>SOC Dashboard for Threat Monitoring:</strong> Real-time log monitoring with Splunk for suspicious activity detection.</li>
+          <li><strong>Django E-commerce Platform:</strong> Full-stack project integrating secure payment and responsive UI.</li>
+          <li><strong>Portfolio Website:</strong> Showcase of cybersecurity, full-stack, and UI/UX projects with interactive demos.</li>
+      </ul>
+  </section>
+
+  <section id="conclusion">
+      <h2><i class="bi bi-lightning-charge blog-icon"></i>Conclusion</h2>
+      <p>The tech world is evolving rapidly, and the lines between development, design, and security are increasingly blurred. By mastering cybersecurity, full-stack development, and UI/UX design, I aim to build applications that are functional, visually appealing, secure, and reliable.</p>
+  </section>
+
+  <section id="cta" class="call-to-action" style="margin-top: 2rem; padding: 1rem; background: #e9f5ff; border-radius: 5px;">
+      <p>Interested in collaborating on secure web applications, exploring SOC analytics, or talking about technology? Connect with me on <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a> or check my <a href="https://github.com/TolexCozy/PRODUCTION_GET" target="_blank">GitHub</a>. Let’s build secure, intuitive, and innovative digital experiences together.</p>
+  </section>
+
+</div>
+
+<!-- Smooth Scroll JS -->
+<script>
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+</script>
+{% endblock body %}

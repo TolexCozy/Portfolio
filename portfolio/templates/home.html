@@ -1,0 +1,36 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+
+
+{% block title %}Tolu's Portfolio{% endblock title %}
+
+
+{% block hero %}
+
+<!-- Hero Section -->
+    <section id="hero" class="hero section dark-background text-center">
+
+      <img src="{% static 'assets/img/cyper-pics-binary.jpg' %}" alt="" data-aos="fade-in" class="">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <h2>Tolu Ayodele</h2>
+        <p class="text-success fw-bold">I'm A <span class="typed text-danger fw-bold" data-typed-items="Designer, Developer, Cyber Security Enthusiast, SOC Analyist">Designer</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+      </div>
+
+    </section><!-- /Hero Section -->
+  
+{% endblock hero %}
+
+{% block body %}
+
+{% for message in messages  %}
+
+  <div class="alert alert-{{message.tegs}} alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  
+{% endfor %}
+
+{% endblock body %}
